@@ -1,0 +1,30 @@
+server:
+  port: 7020
+
+spring:
+  application:
+    name: product-aggregator
+  cloud:
+    config:
+      enabled: true
+      fail-fast: true
+      #discovery:
+        #enabled: true
+      retry:
+        initial-interval: 100000
+        max-attempts: 20
+        max-interval: 10000
+  cache:
+    jcache:
+      config: classpath:ehcache.xml
+---
+
+
+spring:
+  profiles: default
+  cloud:
+    config:
+      #discovery:
+        #service-id: config-server
+      uri: http://localhost:7010
+
