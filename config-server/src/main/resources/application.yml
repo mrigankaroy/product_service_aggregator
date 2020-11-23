@@ -1,0 +1,15 @@
+server:
+  port: 7010
+
+spring:
+  application:
+    name: ${MICROSERVICE_NAME:config-server}
+    namespace: ${CLOUD_NAMESPACE:unknown}
+    cloud_namespace: ${CLOUD_NAMESPACE:unknown}
+
+mongo:
+  host: ${MONGO_HOST:localhost}
+  port: ${MONGO_PORT:27019}
+  dbName: ${MONGO_DB_NAME:config-server}
+  user: ${MONGO_USER:microservice_admin}
+  password: ${MONGO_PASSWORD:microservice_admin}
