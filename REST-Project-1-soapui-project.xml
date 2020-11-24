@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="afa13c2e-b2f0-4df2-917f-ddba479819ca" activeEnvironment="Default" name="REST Project 1" resourceRoot="" soapui-version="5.6.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:RestService" id="7d219484-37fd-45f5-9f81-11458cad2344" wadlVersion="http://wadl.dev.java.net/2009/02" name="http://localhost:1800" type="rest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache/><con:endpoints><con:endpoint>http://localhost:1800</con:endpoint></con:endpoints><con:resource name="Product" path="/product" id="9001fece-47be-4377-b289-282a0a1e2932"><con:settings/><con:parameters/><con:method name="Product 1" id="61881990-d374-454c-bb57-8aba4e63ac72" method="GET"><con:settings/><con:parameters/><con:request name="Request 1" id="2c0a39f5-ed45-4017-9833-eb98b8741740" mediaType="application/json"><con:settings/><con:endpoint>http://localhost:1800</con:endpoint><con:request/><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:parameters/></con:request></con:method></con:resource></con:interface><con:restMockService id="08d0f7fd-6b4e-425f-8033-ccea2c12e42e" port="18080" path="/" host="WS-14320" name="Product Service" docroot=""><con:settings/><con:properties/><con:restMockAction name="product" method="GET" resourcePath="/product" id="2e37d4a8-c5ae-4cc0-8d99-2a16a33c8ce0"><con:settings/><con:defaultResponse>Product_response_1</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+// Script dispatcher is used to select a response based on the incoming request.&#13;
+// Here are few examples showing how to match based on path, query param, header and body&#13;
+&#13;
+// Match based on path&#13;
+def requestPath = mockRequest.getPath()&#13;
+log.info "Path: "+ requestPath&#13;
+&#13;
+if( requestPath.contains("json") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "JSON Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on query parameter&#13;
+def queryString = mockRequest.getRequest().getQueryString()&#13;
+log.info "QueryString: " + queryString&#13;
+&#13;
+if( queryString.contains("stockholm") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response Stockholm"&#13;
+}&#13;
+else if( queryString.contains("london") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response London"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on header&#13;
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")&#13;
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList&#13;
+&#13;
+if( acceptEncodingHeaderList.contains("gzip,deflate") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "GZiped Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on body&#13;
+def requestBody = mockRequest.getRequestContent()&#13;
+log.info "Request body: " + requestBody&#13;
+&#13;
+if( requestBody.contains("some data") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response N"&#13;
+}&#13;
+*/&#13;
+</con:dispatchPath><con:response name="Product_response_1" id="302e6c64-876b-4bfb-8267-c5757b74afde" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>//Read request parameter test and assign value to a variable
+def productId = mockRequest.httpRequest.getParameter('id')
+//Assign the input value to response context
+context.productId = productId
+
+context.name = "product name-"+productId
+
+context.currencyCode = "USD"
+</con:script><con:responseContent>{"productId": "${productId}" , "name":"${name}" , "description":"${name}" , "currencyCode":"${currencyCode}"  }</con:responseContent></con:response></con:restMockAction></con:restMockService><con:restMockService id="e05961bf-8512-4ebc-aa32-e46e6d922ae5" port="28080" path="/" host="WS-14320" name="Product price service" docroot=""><con:settings/><con:properties/><con:restMockAction name="price" method="GET" resourcePath="/productPrice" id="b0c164e2-de29-475d-ab74-8f8b03a1f4c9"><con:settings/><con:defaultResponse xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+// Script dispatcher is used to select a response based on the incoming request.&#13;
+// Here are few examples showing how to match based on path, query param, header and body&#13;
+&#13;
+// Match based on path&#13;
+def requestPath = mockRequest.getPath()&#13;
+log.info "Path: "+ requestPath&#13;
+&#13;
+if( requestPath.contains("json") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "JSON Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on query parameter&#13;
+def queryString = mockRequest.getRequest().getQueryString()&#13;
+log.info "QueryString: " + queryString&#13;
+&#13;
+if( queryString.contains("stockholm") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response Stockholm"&#13;
+}&#13;
+else if( queryString.contains("london") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response London"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on header&#13;
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")&#13;
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList&#13;
+&#13;
+if( acceptEncodingHeaderList.contains("gzip,deflate") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "GZiped Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on body&#13;
+def requestBody = mockRequest.getRequestContent()&#13;
+log.info "Request body: " + requestBody&#13;
+&#13;
+if( requestBody.contains("some data") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response N"&#13;
+}&#13;
+*/&#13;
+</con:dispatchPath><con:response name="Product_price_1" id="c7c4e546-63eb-49ec-a0fb-4ff6ae22a569" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>//Read request parameter test and assign value to a variable
+def productId = mockRequest.httpRequest.getParameter('id')
+//Assign the input value to response context
+context.productId_1 = productId
+
+context.price = "10.00";
+
+context.version = "1";
+
+context.currencyCode_1 = "USD"</con:script><con:responseContent>{"productId": "${productId_1}" , "price":"${price}" , "version":"${version}" , "currencyCode":"${currencyCode_1}"  }</con:responseContent></con:response></con:restMockAction><con:restMockAction name="/productPrice" method="PUT" resourcePath="/productPrice" id="3e01919f-85e5-4339-8bde-fc8891a9c094"><con:settings/><con:defaultResponse>Price update response</con:defaultResponse><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:dispatchPath>/*&#13;
+// Script dispatcher is used to select a response based on the incoming request.&#13;
+// Here are few examples showing how to match based on path, query param, header and body&#13;
+&#13;
+// Match based on path&#13;
+def requestPath = mockRequest.getPath()&#13;
+log.info "Path: "+ requestPath&#13;
+&#13;
+if( requestPath.contains("json") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "JSON Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on query parameter&#13;
+def queryString = mockRequest.getRequest().getQueryString()&#13;
+log.info "QueryString: " + queryString&#13;
+&#13;
+if( queryString.contains("stockholm") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response Stockholm"&#13;
+}&#13;
+else if( queryString.contains("london") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response London"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on header&#13;
+def acceptEncodingHeaderList = mockRequest.getRequestHeaders().get("Accept-Encoding")&#13;
+log.info "AcceptEncoding Header List: " + acceptEncodingHeaderList&#13;
+&#13;
+if( acceptEncodingHeaderList.contains("gzip,deflate") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "GZiped Response"&#13;
+}&#13;
+&#13;
+&#13;
+// Match based on body&#13;
+def requestBody = mockRequest.getRequestContent()&#13;
+log.info "Request body: " + requestBody&#13;
+&#13;
+if( requestBody.contains("some data") )&#13;
+{&#13;
+    // return the name of the response you want to dispatch&#13;
+    return "Response N"&#13;
+}&#13;
+*/&#13;
+</con:dispatchPath><con:response name="Price update response" id="896185ca-2afd-4a17-b87f-7e7ba4fa39ee" httpResponseStatus="200" mediaType="application/json"><con:settings/><con:script>//Read request parameter test and assign value to a variable
+def productId = mockRequest.httpRequest.getParameter('id')
+//Assign the input value to response context
+context.productId_2 = productId
+
+context.price = "10.00";
+
+context.version = "1";
+
+context.currencyCode_2 = "USD"</con:script><con:responseContent>{"productId": "${productId_2}" , "price":"${price}" , "version":"${version}" , "currencyCode":"${currencyCode_2}"  }</con:responseContent></con:response></con:restMockAction></con:restMockService><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
