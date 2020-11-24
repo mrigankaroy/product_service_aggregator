@@ -62,5 +62,5 @@ You can also enable keycloak security and access API via gateway with JWT securi
 You can also check error handling by shutting down one mock service.
 
 # Future enhancement
-Move all services to service registry
-Disable product agreegator post and only access via gateway port.
+ - Move all services to service registry
+ - Disable product agreegator post and only access via gateway port.
